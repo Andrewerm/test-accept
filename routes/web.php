@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserSettings\UserSettingsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+// endpoint для приложений, требующих смену настроек пользователя
+Route::post('/change-settings/{id}',[UserSettingsController::class,'edit'])->name('change');
+// endpoint для сервисов подтверждения (Телеграмм, Email, SMS)
+Route::post('/accept/{id}',[UserSettingsController::class,'accept'])->name('accept');
